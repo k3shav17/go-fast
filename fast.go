@@ -29,13 +29,13 @@ func main() {
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatalf("")
+		log.Fatalf("unable to read data")
 	}
 
 	var tempFiles []TempFileLinks
 	error := json.Unmarshal(data, &tempFiles)
 	if len(tempFiles) == 0 {
-		log.Fatalf("deentlo em ledhu ra gootley %s", error)
+		log.Fatalf("error in unmarshaling the files received %s", error)
 	}
 
 	var multipleSpeeds []float64
