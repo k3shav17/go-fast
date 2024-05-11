@@ -56,13 +56,13 @@ func main() {
 }
 
 func callThis(url string) float64 {
-	chunckSize := 26214400
+	chunkSize := 26214400
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatalf("unable to read the url")
 	}
 
-	buffer := make([]byte, chunckSize) // creating a buffer of 25MB
+	buffer := make([]byte, chunkSize) // creating a buffer of 25MB
 
 	startTime := time.Now()
 	_, err = io.ReadFull(resp.Body, buffer) // whatever is read from the response body is read into the buffer of size 25MB
@@ -71,7 +71,7 @@ func callThis(url string) float64 {
 		log.Fatalf("can't write to buffer")
 	}
 
-	downloadRate := float64(chunckSize) / float64(endTime.Sub(startTime).Seconds())
+	downloadRate := float64(chunkSize) / float64(endTime.Sub(startTime).Seconds())
 	return (downloadRate / (1024 * 1024)) * 8 // returning the speed in Mege bits / second
 
 }
